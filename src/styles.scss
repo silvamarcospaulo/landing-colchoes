@@ -26,7 +26,7 @@ body {
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
   // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
+  background-color: transparent;
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
 
@@ -44,6 +44,11 @@ body {
     --color-background: #2b2b2b;
     --breakpoint-tablet: 1024px;
     --font-family-base: "Bebas Naue", sans-serif;
+    --color-light: rgba(24, 82, 128, 0.75);
+    --cloud-opacity: 0.45;
+    --glow-color: rgba(51, 120, 165, 0.55);
+    --card-shadow: 0 20px 40px rgba(24, 82, 128, 0.12);
+    --glass-background: rgba(255, 255, 255, 0.75);
 }
 
 * {
@@ -53,9 +58,79 @@ body {
 }
 
 body {
-    font-family: var(--font-family-base);
+    position: relative;
+    min-height: 100%;
+    font-family: var(--font-family-base), "Roboto", "Helvetica Neue", sans-serif;
     color: var(--color-text);
-    background-color: var(--color-background);
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.55), transparent 55%),
+        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.4), transparent 50%),
+        linear-gradient(180deg, #e8f3fb 0%, #f6fbff 45%, #ffffff 100%);
+    overflow-x: hidden;
 }
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    background-image:
+        radial-gradient(circle at 10% 80%, rgba(255, 255, 255, var(--cloud-opacity)), transparent 60%),
+        radial-gradient(circle at 60% 60%, rgba(255, 255, 255, calc(var(--cloud-opacity) - 0.15)), transparent 65%),
+        radial-gradient(circle at 90% 85%, rgba(206, 229, 244, 0.35), transparent 55%);
+    animation: floatClouds 18s ease-in-out infinite;
+}
+
+body::after {
+    background-image:
+        radial-gradient(ellipse at 25% 30%, rgba(255, 255, 255, calc(var(--cloud-opacity) - 0.2)), transparent 60%),
+        radial-gradient(ellipse at 75% 20%, rgba(255, 255, 255, 0.35), transparent 55%);
+    animation: floatCloudsReverse 26s ease-in-out infinite;
+}
+
+@keyframes floatClouds {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes floatCloudsReverse {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(15px);
+    }
+}
+
+@keyframes pulseGlow {
+    0%,
+    100% {
+        text-shadow: 0 0 8px rgba(51, 120, 165, 0.45), 0 0 18px rgba(51, 120, 165, 0.35);
+    }
+    50% {
+        text-shadow: 0 0 14px rgba(51, 120, 165, 0.65), 0 0 28px rgba(51, 120, 165, 0.5);
+    }
+}
+
+@keyframes softTyping {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
