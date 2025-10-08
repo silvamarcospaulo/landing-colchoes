@@ -5,6 +5,9 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@use 'sass:color';
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 html {
   @include mat.theme((
@@ -33,7 +36,6 @@ body {
   // Reset the user agent margin.
   margin: 0;
 }
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 :root {
     --color-primary: #ffffff;
@@ -43,7 +45,7 @@ body {
     --color-muted: #888888;
     --color-background: #2b2b2b;
     --breakpoint-tablet: 1024px;
-    --font-family-base: "Bebas Naue", sans-serif;
+    --font-family-base: "Bebas Neue", sans-serif;
 }
 
 * {
@@ -52,10 +54,133 @@ body {
     box-sizing: border-box;
 }
 
+html,
 body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
     font-family: var(--font-family-base);
     color: var(--color-text);
-    background-color: var(--color-background);
+    background:
+        linear-gradient(
+            180deg,
+            color.scale(#3378a5, $lightness: 45%) 0%,
+            #ffffff 40%,
+            color.scale(#3378a5, $lightness: 55%) 100%
+        );
+    position: relative;
+    overflow-x: hidden;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0 auto auto 50%;
+    width: min(1600px, 120vw);
+    height: 120vh;
+    background-repeat: no-repeat;
+    background-size: 140% 140%;
+    background-image:
+        radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 60%),
+        radial-gradient(ellipse at bottom right, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 55%);
+    transform: translateX(-50%);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: -2;
+    animation: floatingClouds 18s ease-in-out infinite alternate;
+}
+
+body::after {
+    inset: auto auto 0 45%;
+    height: 100vh;
+    width: min(1400px, 110vw);
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 60%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 55%);
+    animation-duration: 22s;
+}
+
+section {
+    position: relative;
+    isolation: isolate;
+}
+
+@keyframes floatingClouds {
+    0% {
+        transform: translate(-50%, -15px) scale(1.05);
+    }
+    50% {
+        transform: translate(-48%, 10px) scale(1.08);
+    }
+    100% {
+        transform: translate(-52%, -5px) scale(1.04);
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        text-shadow: 0 0 12px rgba(51, 120, 165, 0.25), 0 0 24px rgba(51, 120, 165, 0.15);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(51, 120, 165, 0.45), 0 0 40px rgba(51, 120, 165, 0.25);
+    }
+}
+
+@keyframes underlineSweep {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+@keyframes shimmerWriting {
+    0% {
+        background-position: -120%;
+    }
+    100% {
+        background-position: 220%;
+    }
+}
+
+:is(#titulo-video-seo, #titulo, #section-qual-escolher h2, #section-depoimentos h2, #texto-institucional h2) {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-inline: auto;
+    padding-inline: 0.4rem;
+    line-height: 1.2;
+    background-image: linear-gradient(90deg, rgba(51, 120, 165, 0.1), rgba(51, 120, 165, 0.6), rgba(51, 120, 165, 0.1));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shimmerWriting 5s linear infinite alternate, glowPulse 4s ease-in-out infinite alternate;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: auto 5% -0.45rem 5%;
+        height: 0.35rem;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(51, 120, 165, 0.45), rgba(255, 255, 255, 0));
+        transform-origin: left;
+        transform: scaleX(0);
+        animation: underlineSweep 1.4s ease forwards;
+        filter: blur(0.5px);
+    }
+}
+
+:is(#titulo-video-seo, #titulo, #section-qual-escolher h2, #section-depoimentos h2, #texto-institucional h2)::after {
+    animation-delay: 0.3s;
+}

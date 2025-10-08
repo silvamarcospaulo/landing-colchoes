@@ -1,104 +1,120 @@
 #section-beneficios {
-    min-height: 80vh;
     width: 100%;
+    background: linear-gradient(180deg, rgba(51, 120, 165, 0.18), rgba(255, 255, 255, 0.95));
     display: flex;
-    place-content: center;
-    place-items: center;
-    flex-direction: column;
-    background-color: var(--color-text);
+    justify-content: center;
+    padding: 4rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#section-beneficios::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -15%;
+    width: clamp(220px, 40vw, 420px);
+    height: clamp(160px, 30vw, 320px);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+    filter: blur(6px);
+    z-index: 0;
 }
 
 #container-principal {
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 0px;
-    text-align: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    text-align: center;
 }
 
 #titulo {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--color-primary);
+    font-size: clamp(1.9rem, 4vw, 3.2rem);
+    font-weight: 700;
+    margin: 0;
     text-transform: uppercase;
 }
 
 #subtitulo {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: var(--color-secondary);
+    font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+    margin: 0;
+    color: rgba(24, 82, 128, 0.75);
     text-transform: uppercase;
-    font-weight: 500;
+    letter-spacing: 0.08em;
 }
 
 #grade-beneficios {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    width: 100%;
+}
 
-    .item {
-        max-width: 160px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+#grade-beneficios .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(51, 120, 165, 0.1));
+    border-radius: 24px;
+    padding: 1.5rem 1rem;
+    border: 1px solid rgba(51, 120, 165, 0.18);
+    box-shadow: 0 18px 40px rgba(24, 82, 128, 0.16);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-        h3 {
-            margin: 0.5rem 0 0.2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--color-primary);
-        }
+    &:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 26px 48px rgba(24, 82, 128, 0.25);
+    }
 
-        p {
-            margin: 0;
-            font-size: 0.875rem;
-            color: var(--color-secondary);
-        }
+    .icone {
+        font-size: clamp(2rem, 5vw, 2.6rem);
+        color: var(--color-accent);
+        filter: drop-shadow(0 8px 12px rgba(51, 120, 165, 0.25));
+    }
 
-        .icone {
-            font-size: 2rem;
-            color: var(--color-primary);
-        }
+    h3 {
+        margin: 0;
+        font-size: clamp(1.05rem, 2.6vw, 1.4rem);
+        color: var(--color-text);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    p {
+        margin: 0;
+        font-size: clamp(0.9rem, 2.3vw, 1.1rem);
+        color: rgba(24, 82, 128, 0.7);
     }
 }
 
-@media (min-width: 768px) {
-    #container-principal {
-        gap: 30px;
-    }
-
-    #grade-beneficios {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    #titulo {
-        font-size: 2rem;
-    }
-
-    #subtitulo {
-        font-size: 1.125rem;
-    }
+#texto-beneficios-revendedor {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
-@media (min-width: 1200px) {
-    #container-principal {
-        gap: 50px;
+#texto-beneficios-revendedor #botao-quero-ser-um-revendedor {
+    width: auto;
+}
+
+#texto-beneficios-revendedor #botao-quero-ser-um-revendedor a {
+    padding-inline: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    #section-beneficios {
+        padding: 3rem 1.25rem;
     }
 
-    #titulo {
-        font-size: 3rem;
-    }
-
-    #subtitulo {
-        font-size: 2rem;
-    }
-
-    #grade-beneficios {
-        gap: 2rem;
+    #texto-beneficios-revendedor {
+        justify-content: center;
     }
 }

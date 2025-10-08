@@ -1,113 +1,88 @@
 #section-depoimentos {
-    padding: 2rem 1rem;
-    background-color: #f8f9fa;
+    padding: 4rem 1.5rem 5rem;
+    background: linear-gradient(180deg, rgba(51, 120, 165, 0.15), rgba(255, 255, 255, 0.95));
     display: flex;
     justify-content: center;
+}
 
-    #container-principal {
-        width: 100%;
-        max-width: 1400px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+#container-principal {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
 
-        h2 {
-            font-size: 1.5rem;
-            text-align: center;
-            color: #333;
-            margin: 0;
-            font-weight: 700;
-        }
+#container-principal h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin: 0;
+    text-transform: uppercase;
+}
 
-        .motivos-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            width: 100%;
+.motivos-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    width: 100%;
+}
 
-            .motivo {
-                background-color: white;
-                border-radius: 8px;
-                padding: 1.5rem;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+.motivo {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(51, 120, 165, 0.12));
+    border-radius: 28px;
+    padding: clamp(1.8rem, 3vw, 2.2rem);
+    box-shadow: 0 20px 45px rgba(24, 82, 128, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.2rem;
+    border: 1px solid rgba(51, 120, 165, 0.2);
+}
 
-                .motivo-icon {
-                    font-size: 2.5rem;
-                    margin-bottom: 1rem;
-                }
+.motivo-icon {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    filter: drop-shadow(0 10px 18px rgba(51, 120, 165, 0.25));
+}
 
-                h3 {
-                    font-size: 1.25rem;
-                    color: #333;
-                    margin: 0 0 1rem 0;
-                    font-weight: 700;
-                }
+.motivo h3 {
+    font-size: clamp(1.25rem, 2.8vw, 1.6rem);
+    color: var(--color-text);
+    margin: 0;
+    letter-spacing: 0.06em;
+}
 
-                p {
-                    color: #666;
-                    line-height: 1.5;
-                    margin: 0;
-                }
-            }
-        }
+.motivo p {
+    color: rgba(24, 82, 128, 0.75);
+    line-height: 1.6;
+    margin: 0;
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+}
 
-        button {
-            background-color: #1a73e8;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
+#container-principal button {
+    background: linear-gradient(135deg, rgba(51, 120, 165, 0.95), rgba(51, 120, 165, 0.7));
+    color: var(--color-primary);
+    border: none;
+    border-radius: 999px;
+    padding: 0.9rem 2.6rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 18px 35px rgba(24, 82, 128, 0.25);
 
-            &:hover {
-                background-color: #0d62d9;
-            }
-        }
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 26px 45px rgba(24, 82, 128, 0.35);
     }
 }
 
 @media (min-width: 768px) {
     #section-depoimentos {
-        padding: 3rem 2rem;
-
-        #container-principal {
-            h2 {
-                font-size: 2rem;
-            }
-
-            .motivos-container {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-
-                .motivo {
-                    flex: 1;
-                    min-width: 250px;
-                    max-width: 350px;
-                }
-            }
-        }
+        padding: 5rem 2rem 6rem;
     }
-}
 
-@media (min-width: 1024px) {
-    #section-depoimentos {
-        padding: 4rem 2rem;
-
-        #container-principal {
-            .motivos-container {
-                .motivo {
-                    max-width: 400px;
-                }
-            }
-        }
+    .motivos-container {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 }
