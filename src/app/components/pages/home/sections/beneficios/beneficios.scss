@@ -1,11 +1,40 @@
 #section-beneficios {
+    position: relative;
     min-height: 80vh;
     width: 100%;
     display: flex;
     place-content: center;
     place-items: center;
     flex-direction: column;
-    background-color: var(--color-text);
+    background: linear-gradient(180deg, rgba(24, 82, 128, 0.08) 0%, rgba(255, 255, 255, 0.95) 85%, rgba(255, 255, 255, 1) 100%);
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        filter: blur(1px);
+        opacity: 0.65;
+        pointer-events: none;
+    }
+
+    &::before {
+        width: 480px;
+        height: 240px;
+        top: -120px;
+        right: -60px;
+        box-shadow: 0 35px 55px rgba(24, 82, 128, 0.2);
+    }
+
+    &::after {
+        width: 380px;
+        height: 200px;
+        bottom: -100px;
+        left: -40px;
+        box-shadow: 0 25px 45px rgba(51, 120, 165, 0.18);
+    }
 }
 
 #container-principal {
@@ -13,75 +42,107 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 0px;
+    gap: 2.5rem;
     text-align: center;
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 #titulo {
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
     margin-bottom: 0.5rem;
-    color: var(--color-primary);
+    color: var(--color-text);
     text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-shadow: 0 18px 30px rgba(24, 82, 128, 0.2);
+    animation: pulseGlow 7s ease-in-out infinite;
 }
 
 #subtitulo {
-    font-size: 1.2rem;
+    font-size: clamp(1.1rem, 2.2vw, 1.75rem);
     margin-bottom: 2rem;
-    color: var(--color-secondary);
+    color: rgba(24, 82, 128, 0.8);
     text-transform: uppercase;
     font-weight: 500;
+    letter-spacing: 0.03em;
+    text-shadow: 0 12px 24px rgba(24, 82, 128, 0.18);
 }
 
 #grade-beneficios {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: repeat(2, minmax(130px, 1fr));
+    gap: 1.5rem;
     justify-items: center;
+    width: 100%;
 
     .item {
-        max-width: 160px;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 1.8rem 1.2rem;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(51, 120, 165, 0.12);
+        box-shadow: var(--card-shadow);
+        backdrop-filter: blur(10px);
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
 
         h3 {
             margin: 0.5rem 0 0.2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--color-primary);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--color-text);
+            letter-spacing: 0.02em;
+            text-shadow: 0 8px 20px rgba(24, 82, 128, 0.18);
         }
 
         p {
             margin: 0;
-            font-size: 0.875rem;
-            color: var(--color-secondary);
+            font-size: 0.95rem;
+            color: rgba(24, 82, 128, 0.75);
+            letter-spacing: 0.01em;
         }
 
         .icone {
-            font-size: 2rem;
-            color: var(--color-primary);
+            font-size: 2.4rem;
+            color: var(--color-accent);
+            background: linear-gradient(145deg, rgba(51, 120, 165, 0.18), rgba(84, 164, 216, 0.12));
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 18px 30px rgba(24, 82, 128, 0.2);
+        }
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 28px 46px rgba(24, 82, 128, 0.25);
         }
     }
 }
 
 @media (min-width: 768px) {
     #container-principal {
-        gap: 30px;
+        gap: 3rem;
     }
 
     #grade-beneficios {
         grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
     }
 
     #titulo {
-        font-size: 2rem;
+        font-size: clamp(2.4rem, 3vw, 3.2rem);
     }
 
     #subtitulo {
-        font-size: 1.125rem;
+        font-size: clamp(1.25rem, 1.8vw, 1.6rem);
     }
 }
 
@@ -91,14 +152,17 @@
     }
 
     #titulo {
-        font-size: 3rem;
+        font-size: 3.4rem;
     }
 
     #subtitulo {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     #grade-beneficios {
-        gap: 2rem;
+        gap: 2.5rem;
+        .item {
+            max-width: 220px;
+        }
     }
 }
