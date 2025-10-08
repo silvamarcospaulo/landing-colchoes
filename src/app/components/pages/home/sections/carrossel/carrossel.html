@@ -1,0 +1,21 @@
+<div id="carousel-inicio">
+    <div id="carousel-controls">
+        <button (click)="anterior()" aria-label="Slide anterior">❮</button>
+        <button (click)="proximo()" aria-label="Próximo slide">❯</button>
+    </div>
+
+    <div id="carousel-indicators">
+        @for (imagem of imagensCarrossel; track imagem; let i = $index) {
+        <button (click)="irParaSlide(i)" [class.active]="i === activeIndex" [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+        }
+    </div>
+
+    <div id="carousel-wrapper">
+        @for (imagem of imagensCarrossel; track imagem; let i = $index) {
+        <div class="carousel-item" [class.active]="i === activeIndex">
+            <img [src]="imagem.src" [alt]="imagem.alt" />
+        </div>
+        }
+    </div>
+</div>

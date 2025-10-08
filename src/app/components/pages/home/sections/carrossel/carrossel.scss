@@ -1,0 +1,106 @@
+#carousel-inicio {
+    margin-top: 10vh;
+    width: 100%;
+    height: 75vh;
+    display: grid;
+    grid-template-areas: "carousel";
+    place-items: center;
+    background-color: var(--color-primary);
+
+    >* {
+        grid-area: carousel;
+    }
+}
+
+#carousel-wrapper {
+    display: flex;
+    height: 75vh;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+    z-index: 1;
+
+    .carousel-item {
+        flex: 0 0 100%;
+        display: none;
+        height: 100%;
+
+        &.active {
+            display: block;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+}
+
+#carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem;
+    z-index: 2;
+
+    button {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: var(--color-accent);
+        cursor: pointer;
+    }
+}
+
+#carousel-indicators {
+    display: flex;
+    place-items: center;
+    place-content: center;
+    gap: 0.5rem;
+    z-index: 3;
+    margin-top: auto;
+    padding: 1rem;
+
+    button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        background-color: var(--color-muted, #888);
+        opacity: 1;
+        cursor: pointer;
+
+        &.active {
+            background-color: var(--color-accent);
+            opacity: 1;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #carousel-inicio {
+        height: 50vh;
+    }
+
+    #carousel-wrapper {
+        height: 50vh;
+    }
+
+    #carousel-controls button {
+        font-size: 1.5rem;
+    }
+
+    #carousel-indicators button {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    #carousel-inicio,
+    #carousel-wrapper {
+        height: 60vh;
+    }
+}

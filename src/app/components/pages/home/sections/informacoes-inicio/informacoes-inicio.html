@@ -1,0 +1,33 @@
+<section id="inicio">
+    <div id="promocionais">
+        <div class="promo-grid desktop-only">
+            @for (item of promoItems; track item) {
+            <div class="promo-card">
+                <div class="promo-icon">
+                    <i class="{{ item.icon }}"></i>
+                </div>
+                <div class="promo-text">
+                    <h3>{{ item.label }}</h3>
+                    <p>{{ item.description }}</p>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="promo-carousel mobile-only">
+            <div class="carousel-track" [style.transform]="carouselTransform">
+                @for (item of promoItems; track item) {
+                <div class="promo-card">
+                    <div class="promo-icon">
+                        <i class="{{ item.icon }}"></i>
+                    </div>
+                    <div class="promo-text">
+                        <h3>{{ item.label }}</h3>
+                        <p>{{ item.description }}</p>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
