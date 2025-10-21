@@ -11,10 +11,11 @@ import { BotaoWhatsApp } from "../../reutilizaveis/botao-whats-app/botao-whats-a
 import { Beneficios } from "./sections/beneficios/beneficios";
 import { Depoimentos } from "./sections/depoimentos/depoimentos";
 import { QualEscolher } from "./sections/qual-escolher/qual-escolher";
+import { ListaProdutos } from "./sections/lista-produtos/lista-produtos";
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Footer, InformacoesInicio, Inicio, SobreNos, BotaoWhatsApp, Beneficios, Depoimentos, QualEscolher],
+  imports: [Header, Footer, InformacoesInicio, Inicio, SobreNos, BotaoWhatsApp, Beneficios, ListaProdutos, Depoimentos, QualEscolher],
   standalone: true,
   templateUrl: './home.html',
   styleUrl: './home.scss'

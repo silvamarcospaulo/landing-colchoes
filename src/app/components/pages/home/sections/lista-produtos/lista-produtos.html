@@ -1,0 +1,31 @@
+<section id="lista-produtos" class="catalogo">
+  <div class="catalogo__wrapper">
+    <div class="catalogo__intro">
+      <span class="catalogo__tag">Catálogo exclusivo</span>
+      <h2>Colchões pensados para transformar o seu descanso</h2>
+      <p>
+        Explore nossa seleção especial de colchões com diferentes níveis de firmeza, tecnologias de resfriamento e acabamentos
+        premium. Cada modelo foi escolhido para oferecer suporte ideal e conforto na medida certa para o seu estilo de sono.
+      </p>
+      <a class="catalogo__cta" [href]="obterLinkWhatsapp()" target="_blank" rel="noopener" (click)="clicarWhatsapp($event)">
+        Fale com um especialista
+      </a>
+    </div>
+
+    <div class="catalogo__grid">
+      <article class="catalogo-card" *ngFor="let colchao of colchoesCatalogo">
+        <div class="catalogo-card__media">
+          <img [src]="colchao.imagem" [alt]="colchao.titulo" loading="lazy" />
+        </div>
+        <div class="catalogo-card__content">
+          <h3>{{ colchao.titulo }}</h3>
+          <p>{{ colchao.descricao }}</p>
+          <a class="catalogo-card__link" [href]="obterLinkWhatsapp(colchao.titulo)" target="_blank" rel="noopener"
+            (click)="clicarWhatsapp($event, colchao.titulo)">
+            Quero saber mais
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
