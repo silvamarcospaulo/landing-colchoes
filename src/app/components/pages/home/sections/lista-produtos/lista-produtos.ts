@@ -12,6 +12,12 @@ import { ScrollService } from '../../../../../core/services/scroll/scroll.servic
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PixelLinkWhatsappService } from '../../../../../core/services/pixel/pixel-link-whatsapp/pixel-link-whatsapp.service';
 
+interface ColchaoCatalogo {
+  titulo: string;
+  descricao: string;
+  imagem: string;
+}
+
 @Component({
   selector: 'app-lista-produtos',
   standalone: true,
@@ -29,6 +35,65 @@ export class ListaProdutos implements OnChanges {
   itensPorPagina = 8;
   paginaAtual = 1;
   categoriaAtual: string = '';
+  private readonly whatsappNumero = '81998566535';
+  private readonly whatsappNumeroDisplay = '(81) 99856-6535';
+  private readonly whatsappBaseUrl = `https://wa.me/${this.whatsappNumero}?text=`;
+
+  colchoesCatalogo: ColchaoCatalogo[] = [
+    {
+      titulo: 'Colchão Serenity Cloud',
+      descricao: 'Espuma viscoelástica de alta densidade com suporte híbrido para noites mais frescas e confortáveis.',
+      imagem: 'assets/images/catalogo/1.png'
+    },
+    {
+      titulo: 'Colchão Ortopédico Atlas',
+      descricao: 'Estrutura firme com camadas anatômicas que alinham a coluna e aliviam pontos de pressão.',
+      imagem: 'assets/images/catalogo/2.jpg'
+    },
+    {
+      titulo: 'Colchão DreamSoft Duo',
+      descricao: 'Dupla face com tecnologia antialérgica para quem busca maciez e ventilação equilibrada.',
+      imagem: 'assets/images/catalogo/3.png'
+    },
+    {
+      titulo: 'Colchão Balance Max',
+      descricao: 'Molas ensacadas individualmente que reduzem a transferência de movimento durante o sono.',
+      imagem: 'assets/images/catalogo/4.jpg'
+    },
+    {
+      titulo: 'Colchão SpaTherapy',
+      descricao: 'Espuma gel refrescante combinada com fibras naturais que mantêm a temperatura regulada.',
+      imagem: 'assets/images/catalogo/5.jpg'
+    },
+    {
+      titulo: 'Colchão Essential Latex',
+      descricao: 'Látex natural com zonas de suporte progressivo e acabamento hipoalergênico.',
+      imagem: 'assets/images/catalogo/6.png'
+    },
+    {
+      titulo: 'Colchão Infinity Plush',
+      descricao: 'Camadas sobrepostas de espuma perfilada que abraçam o corpo e trazem sensação de leveza.',
+      imagem: 'assets/images/catalogo/7.png'
+    },
+    {
+      titulo: 'Colchão Fresh Air Premium',
+      descricao: 'Sistema de circulação de ar 360° e tecido com toque gelado para noites sem calor.',
+      imagem: 'assets/images/catalogo/8.png'
+    },
+    {
+      titulo: 'Colchão Royal Support',
+      descricao: 'Base reforçada com pillow top europeu que oferece suporte robusto com conforto extra.',
+      imagem: 'assets/images/catalogo/9.png'
+    }
+  ];
+
+  obterLinkWhatsapp(colchao?: string): string {
+    const mensagemBase = colchao
+      ? `Olá, estou interessado no colchão ${colchao} e gostaria de receber mais informações.`
+      : 'Olá, quero descobrir qual o colchão ideal para mim.';
+    const mensagem = encodeURIComponent(mensagemBase);
+    return `${this.whatsappBaseUrl}${mensagem}`;
+  }
 
   ngOnChanges() {
     this.categoriaAtual = this.categoriaFiltrada || '';
@@ -111,12 +176,14 @@ export class ListaProdutos implements OnChanges {
     return paginas;
   }
 
-  clicarWhatsapp(event: Event) {
+  clicarWhatsapp(event: Event, colchao?: string) {
     event.preventDefault();
-    const link = "https://wa.me/81998566535?text=Ol%C3%A1%2C%20quero%20descobrir%20qual%20o%20meu%20colchão%20ideal"
-    this.pixel.trackWhatsappClick('footer', {
-      telefone: '(64) 98410-1024',
-      link: link
+    const link = this.obterLinkWhatsapp(colchao);
+
+    this.pixel.trackWhatsappClick('catalogo', {
+      telefone: this.whatsappNumeroDisplay,
+      link,
+      produto: colchao || 'Consulta catálogo'
     });
 
     this.snackBar.open(
